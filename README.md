@@ -1,5 +1,7 @@
 # Islamic_002
 A work in progress based on https://www.theguardian.com/science/alexs-adventures-in-numberland/2015/feb/10/muslim-rule-and-compass-the-magic-of-islamic-geometric-design
 
-The latest version of the code is Islamic_002_02
+The latest version of the code is Islamic_002_07
 I have posed a question on Quora.com hopefully someone can offer some guidance https://www.quora.com/unanswered/Trying-to-work-out-the-x-y-coordinates-of-a-projected-line-when-it-intersects-with-another-line# 
+
+I also have a webpage with details of my progress at: http://www.rupert.id.au/processing/examples/projection/index.html
