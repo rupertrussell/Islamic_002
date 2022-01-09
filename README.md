@@ -5,3 +5,5 @@ The latest version of the code is Islamic_002_07
 I have posed a question on Quora.com hopefully someone can offer some guidance https://www.quora.com/unanswered/Trying-to-work-out-the-x-y-coordinates-of-a-projected-line-when-it-intersects-with-another-line# 
 
 I also have a webpage with details of my progress at: http://www.rupert.id.au/processing/examples/projection/index.html
+
+Artwork on Redbubble at: https://www.redbubble.com/shop/ap/31982227/
