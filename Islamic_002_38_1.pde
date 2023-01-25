@@ -1,5 +1,7 @@
 // By Rupert Russell
-// 22 May 2018
+// 25 January 2023
+// added ability to control the guideline weight & grescale
+// also added saving as SVG file for plotting on AxiDraw MiniKit2 
 // https://github.com/rupertrussell/Islamic_002
 // MIT licence
 // Not ellegant
@@ -23,6 +25,8 @@
 // http://haptic-data.com/toxiclibsjs/
 // http://toxiclibs.org/docs/core/toxi/geom/Vec2D.html
 // http://natureofcode.com/book/chapter-1-vectors/
+
+import processing.svg.*;
 
 boolean test = false;
 boolean drawCross = true;
@@ -79,9 +83,12 @@ void setup() {
   starOneY = new float[25]; // store y Points for the 8 points on the inside of the star
   starTwoX = new float[25]; // store x Points for the 24 points on the outside of the star on the endge of the square
   starTwoY = new float[25]; // store y Points for the 24 points on the outside of the star on the endge of the square
+  beginRecord(SVG, "islamic_002_38_1.svg"); // Saves to a SGV file uncomment endrecord at bottom of code as well.
+
 }
 
 void draw() {
+  
   background(255);
   noLoop();
   if (test == true) {
@@ -307,6 +314,7 @@ void draw() {
     save("Islamic_002_38_1.png");
     // exit();
   }
+  endRecord();  // Save the SVG file
 }
 
 void mousePressed() {
