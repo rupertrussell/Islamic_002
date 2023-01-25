@@ -30,6 +30,9 @@ import processing.svg.*;
 
 boolean test = false;
 boolean drawCross = true;
+boolean drawStar = true;
+boolean drawCorners = true;
+
 boolean drawEllipses = false; // draw the guideline ellipses
 boolean drawArc = true;
 boolean drawGuideLines = true;
@@ -66,7 +69,7 @@ float start = radians(0);
 float stop = radians(0);
 
 float guideWeight = 0.5; // weight of guide lines 
-int guideColour = 200; // grescale vlaue of guide lines
+int guideColour = 200; // greyscale vlaue of guide lines
 int ellipseSize = 10;
 
 void setup() {
@@ -83,12 +86,17 @@ void setup() {
   starOneY = new float[25]; // store y Points for the 8 points on the inside of the star
   starTwoX = new float[25]; // store x Points for the 24 points on the outside of the star on the endge of the square
   starTwoY = new float[25]; // store y Points for the 24 points on the outside of the star on the endge of the square
-  beginRecord(SVG, "islamic_002_38_1.svg"); // Saves to a SGV file uncomment endrecord at bottom of code as well.
-
+  beginRecord(SVG, "islamic_002_38_1_design_only.svg"); // Saves to a SGV file uncomment endrecord at bottom of code as well.
 }
 
 void draw() {
-  
+  drawCross = true;
+  drawStar = true;
+  drawCorners = true;
+  drawGuideLines = false;
+  drawArc = false;
+  drawEllipses = true;
+
   background(255);
   noLoop();
   if (test == true) {
@@ -151,76 +159,80 @@ void draw() {
     // the 8 ellipses
     // top line
     // point 2
-    ellipse(xCenter - scale * 0.22435, yCenter - scale * testY, ellipseSize, ellipseSize);  // top Left
-    // point 19
-    ellipse(xCenter + scale * 0.22435, yCenter - scale * testY, ellipseSize, ellipseSize);  // top Right
-    // point 9
-    ellipse(xCenter - scale * 0.22435, yCenter + scale * testY, ellipseSize, ellipseSize);  // bottom Left
-    // point `12
-    ellipse(xCenter + scale * 0.22435, yCenter + scale * testY, ellipseSize, ellipseSize);  // bottom Right 
-    // point 4
-    ellipse(xCenter - scale * testY, yCenter - scale * 0.22435, ellipseSize, ellipseSize);  //  Left  top
-    // point 7
-    ellipse(xCenter - scale * testY, yCenter + scale * 0.22435, ellipseSize, ellipseSize);  // left bottom 
-    // point 17
-    ellipse(xCenter + scale * testY, yCenter - scale * 0.22435, ellipseSize, ellipseSize);  // right  top
-    // point 14
-    ellipse(xCenter + scale * testY, yCenter + scale * 0.22435, ellipseSize, ellipseSize);  //  right bottom 
-    // point 3
-    ellipse(xCenter - scale * testY, yCenter - scale * testY, ellipseSize, ellipseSize);  // top Left inner square crossing point
-    // point 18
-    ellipse(xCenter + scale * testY, yCenter - scale * testY, ellipseSize, ellipseSize);  // top Right inner square crossing point
-    // point 8
-    ellipse(xCenter - scale * testY, yCenter + scale * testY, ellipseSize, ellipseSize);  // Bottom Left inner square crossing point
-    // point 13
-    ellipse(xCenter + scale * testY, yCenter + scale * testY, ellipseSize, ellipseSize);  // Bottom Right inner square crossing point
+    if (drawEllipses) {
+      ellipse(xCenter - scale * 0.22435, yCenter - scale * testY, ellipseSize, ellipseSize);  // top Left
+      // point 19
+      ellipse(xCenter + scale * 0.22435, yCenter - scale * testY, ellipseSize, ellipseSize);  // top Right
+      // point 9
+      ellipse(xCenter - scale * 0.22435, yCenter + scale * testY, ellipseSize, ellipseSize);  // bottom Left
+      // point `12
+      ellipse(xCenter + scale * 0.22435, yCenter + scale * testY, ellipseSize, ellipseSize);  // bottom Right 
+      // point 4
+      ellipse(xCenter - scale * testY, yCenter - scale * 0.22435, ellipseSize, ellipseSize);  //  Left  top
+      // point 7
+      ellipse(xCenter - scale * testY, yCenter + scale * 0.22435, ellipseSize, ellipseSize);  // left bottom 
+      // point 17
+      ellipse(xCenter + scale * testY, yCenter - scale * 0.22435, ellipseSize, ellipseSize);  // right  top
+      // point 14
+      ellipse(xCenter + scale * testY, yCenter + scale * 0.22435, ellipseSize, ellipseSize);  //  right bottom 
+      // point 3
+      ellipse(xCenter - scale * testY, yCenter - scale * testY, ellipseSize, ellipseSize);  // top Left inner square crossing point
+      // point 18
+      ellipse(xCenter + scale * testY, yCenter - scale * testY, ellipseSize, ellipseSize);  // top Right inner square crossing point
+      // point 8
+      ellipse(xCenter - scale * testY, yCenter + scale * testY, ellipseSize, ellipseSize);  // Bottom Left inner square crossing point
+      // point 13
+      ellipse(xCenter + scale * testY, yCenter + scale * testY, ellipseSize, ellipseSize);  // Bottom Right inner square crossing point
+    }
   }
 
-  // draw corner angles
-  stroke(dR, dG, dB);
-  strokeWeight(designWeight);
-  // top left corner
-  // 1 - 2  
-  // code line 155
-  line(xCenter - scale * 0.1691, yCenter - scale * 0.5, xCenter - scale * 0.22435, yCenter - scale * testY); // start point top left boundary square
-  // 2 - 3
-  line(xCenter - scale * 0.22435, yCenter - scale * testY, xCenter - scale * testY, yCenter - scale * testY); // working downwards and leftwards
-  // 3 - 4
-  line(xCenter - scale * testY, yCenter - scale * testY, xCenter - scale * testY, yCenter - scale * 0.22435);
-  // 4 - 5
-  line(xCenter - scale * testY, yCenter - scale * 0.22435, xCenter - scale * 0.5, yCenter - scale * 0.1691);
-  // bottom left corner
-  // 6 - 7  
-  line(xCenter - scale * 0.5, yCenter + scale * 0.1691, xCenter - scale * testY, yCenter + scale * 0.22435); // start point bottom left boundary square
-  // 7 - 8
-  line(xCenter - scale * testY, yCenter + scale * 0.22435, xCenter - scale * testY, yCenter + scale * testY); // working downwards and rightwards
-  // 8 - 9
-  line(xCenter - scale * testY, yCenter + scale * testY, xCenter - scale * 0.22435, yCenter + scale * testY);
-  // 9 - 10
-  line(xCenter - scale * 0.22435, yCenter + scale * testY, xCenter - scale * 0.1691, yCenter + scale * 0.5);
 
-  // bottom right corner
-  // 11-12
-  line(xCenter + scale * 0.1691, yCenter + scale * 0.5, xCenter + scale * 0.22435, yCenter + scale * testY);
-  // 12 - 13
-  line(xCenter + scale * 0.22435, yCenter + scale * testY, xCenter + scale * testY, yCenter + scale * testY);
-  // 13 - 14
-  line(xCenter + scale * testY, yCenter + scale * testY, xCenter + scale * testY, yCenter + scale * 0.22435);
-  // 14 - 15
-  line(xCenter + scale * testY, yCenter + scale * 0.22435, xCenter + scale * 0.5, yCenter + scale * 0.1691);
-  // top right corner
-  // 16 - 17
-  line(xCenter + scale * 0.5, yCenter - scale * 0.1691, xCenter + scale * testY, yCenter - scale * 0.22435);
-  // 17 - 18
-  line(xCenter + scale * testY, yCenter - scale * 0.22435, xCenter + scale * testY, yCenter - scale * testY);
-  // 18 - 19
-  line(xCenter + scale * testY, yCenter - scale * testY, xCenter + scale * 0.22435, yCenter - scale * testY);
-  // 19 - 20
-  line(xCenter + scale * 0.22435, yCenter - scale * testY, xCenter + scale * 0.1691, yCenter - scale * 0.5);
+  // draw corner angles
+  if (drawCorners) {
+    stroke(dR, dG, dB);
+    strokeWeight(designWeight);
+    // top left corner
+    // 1 - 2  
+    // code line 155
+    line(xCenter - scale * 0.1691, yCenter - scale * 0.5, xCenter - scale * 0.22435, yCenter - scale * testY); // start point top left boundary square
+    // 2 - 3
+    line(xCenter - scale * 0.22435, yCenter - scale * testY, xCenter - scale * testY, yCenter - scale * testY); // working downwards and leftwards
+    // 3 - 4
+    line(xCenter - scale * testY, yCenter - scale * testY, xCenter - scale * testY, yCenter - scale * 0.22435);
+    // 4 - 5
+    line(xCenter - scale * testY, yCenter - scale * 0.22435, xCenter - scale * 0.5, yCenter - scale * 0.1691);
+    // bottom left corner
+    // 6 - 7  
+    line(xCenter - scale * 0.5, yCenter + scale * 0.1691, xCenter - scale * testY, yCenter + scale * 0.22435); // start point bottom left boundary square
+    // 7 - 8
+    line(xCenter - scale * testY, yCenter + scale * 0.22435, xCenter - scale * testY, yCenter + scale * testY); // working downwards and rightwards
+    // 8 - 9
+    line(xCenter - scale * testY, yCenter + scale * testY, xCenter - scale * 0.22435, yCenter + scale * testY);
+    // 9 - 10
+    line(xCenter - scale * 0.22435, yCenter + scale * testY, xCenter - scale * 0.1691, yCenter + scale * 0.5);
+
+    // bottom right corner
+    // 11-12
+    line(xCenter + scale * 0.1691, yCenter + scale * 0.5, xCenter + scale * 0.22435, yCenter + scale * testY);
+    // 12 - 13
+    line(xCenter + scale * 0.22435, yCenter + scale * testY, xCenter + scale * testY, yCenter + scale * testY);
+    // 13 - 14
+    line(xCenter + scale * testY, yCenter + scale * testY, xCenter + scale * testY, yCenter + scale * 0.22435);
+    // 14 - 15
+    line(xCenter + scale * testY, yCenter + scale * 0.22435, xCenter + scale * 0.5, yCenter + scale * 0.1691);
+    // top right corner
+    // 16 - 17
+    line(xCenter + scale * 0.5, yCenter - scale * 0.1691, xCenter + scale * testY, yCenter - scale * 0.22435);
+    // 17 - 18
+    line(xCenter + scale * testY, yCenter - scale * 0.22435, xCenter + scale * testY, yCenter - scale * testY);
+    // 18 - 19
+    line(xCenter + scale * testY, yCenter - scale * testY, xCenter + scale * 0.22435, yCenter - scale * testY);
+    // 19 - 20
+    line(xCenter + scale * 0.22435, yCenter - scale * testY, xCenter + scale * 0.1691, yCenter - scale * 0.5);
+  }
 
   // Star Two Guidelines **
   // calculate 24 points around the starTwo circle
-  println("inside * starTwo");
   counter = 0;
   double step = radians(360/24);
   float h = xCenter; 
@@ -232,7 +244,8 @@ void draw() {
     starTwoX[counter] = x;
     starTwoY[counter] = y;
     if (drawEllipses) {
-      ellipse(x, y, 7, 7);
+      stroke(guideColour);
+      ellipse(x, y, ellipseSize, ellipseSize);
     }
     //stroke(0);
     counter ++;
@@ -292,24 +305,27 @@ void draw() {
   starOneY[24] = yCenter - scale * 0.5;
 
   // Star Lines
-  strokeWeight(designWeight);
-  stroke(dR, dG, dB);
-  line(starOneX[1], starOneY[1], starOneX[2], starOneY[2]);
-  line(starOneX[2], starOneY[2], starOneX[3], starOneY[3]);
-  line(starOneX[4], starOneY[4], starOneX[5], starOneY[5]);
-  line(starOneX[5], starOneY[5], starOneX[6], starOneY[6]);
-  line(starOneX[7], starOneY[7], starOneX[8], starOneY[8]);
-  line(starOneX[8], starOneY[8], starOneX[9], starOneY[9]);
-  line(starOneX[10], starOneY[10], starOneX[11], starOneY[11]);
-  line(starOneX[11], starOneY[11], starOneX[12], starOneY[12]);
-  line(starOneX[13], starOneY[13], starOneX[14], starOneY[14]);
-  line(starOneX[14], starOneY[14], starOneX[15], starOneY[15]);
-  line(starOneX[16], starOneY[16], starOneX[17], starOneY[17]);
-  line(starOneX[17], starOneY[17], starOneX[18], starOneY[18]);
-  line(starOneX[19], starOneY[19], starOneX[20], starOneY[20]);
-  line(starOneX[20], starOneY[20], starOneX[21], starOneY[21]);
-  line(starOneX[22], starOneY[22], starOneX[23], starOneY[23]);
-  line(starOneX[23], starOneY[23], starOneX[24], starOneY[24]);
+  if (drawStar) {
+    strokeWeight(designWeight);
+    stroke(dR, dG, dB);
+    line(starOneX[1], starOneY[1], starOneX[2], starOneY[2]);
+    line(starOneX[2], starOneY[2], starOneX[3], starOneY[3]);
+    line(starOneX[4], starOneY[4], starOneX[5], starOneY[5]);
+    line(starOneX[5], starOneY[5], starOneX[6], starOneY[6]);
+    line(starOneX[7], starOneY[7], starOneX[8], starOneY[8]);
+    line(starOneX[8], starOneY[8], starOneX[9], starOneY[9]);
+    line(starOneX[10], starOneY[10], starOneX[11], starOneY[11]);
+    line(starOneX[11], starOneY[11], starOneX[12], starOneY[12]);
+    line(starOneX[13], starOneY[13], starOneX[14], starOneY[14]);
+    line(starOneX[14], starOneY[14], starOneX[15], starOneY[15]);
+    line(starOneX[16], starOneY[16], starOneX[17], starOneY[17]);
+    line(starOneX[17], starOneY[17], starOneX[18], starOneY[18]);
+    line(starOneX[19], starOneY[19], starOneX[20], starOneY[20]);
+    line(starOneX[20], starOneY[20], starOneX[21], starOneY[21]);
+    line(starOneX[22], starOneY[22], starOneX[23], starOneY[23]);
+    line(starOneX[23], starOneY[23], starOneX[24], starOneY[24]);
+  }
+
   if (test == true) {
     save("Islamic_002_38_1.png");
     // exit();
@@ -482,7 +498,7 @@ void guides() {
   }
   // outer circle used to determine points on boundary square
   if (drawEllipses) {
-    
+
     ellipseMode(CENTER);  // Set ellipseMode to CENTER
     ellipseMode(CENTER);  // Set ellipseMode to CENTER
     ellipse(xCenter, yCenter, scale, scale);  // draw the central circle in the square
